@@ -13,12 +13,13 @@ public class SplashMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EasySplashScreen config=new EasySplashScreen(SplashMain.this)
                 .withFullScreen()
-                .withTargetActivity(MainActivity.class)
+                .withTargetActivity(Categorie.class)
                 .withSplashTimeOut(1000)
-                .withBackgroundResource(R.drawable.back)
+                .withBackgroundResource(R.drawable.back2)
                 //.withBackgroundColor(Color.parseColor("#f6acad"))
                 .withLogo(R.drawable.logo)
-                .withHeaderText("Welcom Guest !");
+                .withHeaderText("Welcom Guest !")
+                .withFooterText("@copyright 2018 By 4Challeng ");
 
         config.getHeaderTextView().setTextColor(Color.parseColor("#732b2a"));
 

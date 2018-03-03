@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_autichallenge" default="compile.module.autichallenge">
+  <dirname property="module.autichallenge.basedir" file="${ant.file.module_autichallenge}"/>
+  
+  <property name="module.jdk.home.autichallenge" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.autichallenge" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.autichallenge" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.autichallenge" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="autichallenge.output.dir" value="${module.autichallenge.basedir}/build/classes/production/AutiChallenge"/>
+  <property name="autichallenge.testoutput.dir" value="${module.autichallenge.basedir}/build/classes/test/AutiChallenge"/>
+  
+  <path id="autichallenge.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="autichallenge.module.production.classpath">
+    <path refid="${module.jdk.classpath.autichallenge}"/>
+  </path>
+  
+  <path id="autichallenge.runtime.production.module.classpath">
+    <pathelement location="${autichallenge.output.dir}"/>
+  </path>
+  
+  <path id="autichallenge.module.classpath">
+    <path refid="${module.jdk.classpath.autichallenge}"/>
+    <pathelement location="${autichallenge.output.dir}"/>
+  </path>
+  
+  <path id="autichallenge.runtime.module.classpath">
+    <pathelement location="${autichallenge.testoutput.dir}"/>
+    <pathelement location="${autichallenge.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.autichallenge">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.autichallenge">
+    <patternset refid="excluded.from.module.autichallenge"/>
+  </patternset>
+  
+  
+  <target name="compile.module.autichallenge" depends="compile.module.autichallenge.production,compile.module.autichallenge.tests" description="Compile module AutiChallenge"/>
+  
+  <target name="compile.module.autichallenge.production" depends="register.custom.compilers" description="Compile module AutiChallenge; production classes"/>
+  
+  <target name="compile.module.autichallenge.tests" depends="register.custom.compilers,compile.module.autichallenge.production" description="compile module AutiChallenge; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.autichallenge" description="cleanup module">
+    <delete dir="${autichallenge.output.dir}"/>
+    <delete dir="${autichallenge.testoutput.dir}"/>
+  </target>
+</project>
